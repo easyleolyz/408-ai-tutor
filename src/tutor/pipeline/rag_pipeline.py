@@ -6,6 +6,7 @@ import numpy as np
 
 from ..config import load_rag_config, load_index_config, load_model_config
 from ..index.faiss_index import FaissIndex
+from ..index.embeddings import embed_texts
 from ..schemas import (
     Answer,
     Chunk,
@@ -22,7 +23,7 @@ class RAGPipeline:
     """
     最小可用 RAG Pipeline：
     - 从磁盘加载 FAISS 索引和 chunks
-    - 用（目前是假的）query 向量检索 top_k chunks
+    - 用真实 embedding 检索 top_k chunks
     - 拼接成 context
     - 调用 DeepSeek 返回答案
     """
@@ -70,23 +71,21 @@ class RAGPipeline:
             faiss_index=faiss_index,
         )
 
-    # ===== 检索相关（目前使用随机 query 向量占位） =====
+    # ===== 检索相关（使用真实 embedding） =====
 
-    def _fake_embed_query(self, question: str) -> np.ndarray:
+    def _embed_query(self, question: str) -> np.ndarray:
         """
-        用随机向量代替真实 query embedding。
-        后续会替换为真正的文本 embedding 模型。
+        使用与索引相同的 embedding 模型，对 query 做编码。
+        如果以后你用的是 BGE 系列，可以考虑在这里加上 query 的指令前缀。
         """
-        dim = self.index_cfg.embedding_dim
-        vec = np.random.randn(dim).astype("float32")
-        return vec
+        vecs = embed_texts([question], self.index_cfg)
+        return vecs[0]
 
     def retrieve_chunks(self, question: str) -> List[Chunk]:
         """
         根据问题，检索 top_k 个 chunk。
-        当前使用随机 query 向量，仅用于打通流程。
         """
-        query_vec = self._fake_embed_query(question)
+        query_vec = self._embed_query(question)
         results = self.faiss_index.search(query_vec, top_k=self.rag_cfg.top_k)
         chunks = [c for _, c in results]
         return chunks

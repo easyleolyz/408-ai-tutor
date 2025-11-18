@@ -79,11 +79,20 @@ class IndexConfig:
     data_dir: str               # 原始数据目录，如 "data/raw"
     file_patterns: List[str]    # 需要扫描的文件模式，如 ["*.md", "*.txt"]
 
-    embedding_dim: int = 768
+    # 嵌入维度
+    embedding_dim: int = 1024
     faiss_index_type: str = "Flat"
 
+    # 文本切分
     chunk_size: int = 400
     chunk_overlap: int = 50
+
+    # Embedding 模型相关
+    embedding_model: str = "BAAI/bge-m3"
+    # "auto" / "cpu" / "cuda"
+    embedding_device: str = "auto"
+    embedding_batch_size: int = 16
+    normalize_embeddings: bool = True
 
 
 @dataclass

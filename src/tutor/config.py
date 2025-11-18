@@ -101,10 +101,17 @@ def load_index_config(path: Union[str, Path] = "config/index.yaml") -> IndexConf
         index_dir=data["index_dir"],
         data_dir=data["data_dir"],
         file_patterns=data.get("file_patterns", ["*.md", "*.txt"]),
-        embedding_dim=int(data.get("embedding_dim", 768)),
+
+        embedding_dim=int(data.get("embedding_dim", 1024)),
         faiss_index_type=data.get("faiss_index_type", "Flat"),
+
         chunk_size=int(data.get("chunk_size", 400)),
         chunk_overlap=int(data.get("chunk_overlap", 50)),
+
+        embedding_model=data.get("embedding_model", "BAAI/bge-m3"),
+        embedding_device=data.get("embedding_device", "auto"),
+        embedding_batch_size=int(data.get("embedding_batch_size", 16)),
+        normalize_embeddings=bool(data.get("normalize_embeddings", True)),
     )
 
 
