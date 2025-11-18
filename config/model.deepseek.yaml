@@ -1,0 +1,14 @@
+backend: "api"
+provider: "deepseek"
+
+# 从环境变量中读取 API Key，避免写死在仓库里
+api_key_env: "DEEPSEEK_API_KEY"
+
+# DeepSeek API 基础配置（按官方说明修改）
+base_url: "https://api.deepseek.com"
+model_name: "deepseek-chat"   # 这里可以改成你实际要用的模型名
+
+# 采样与请求参数
+temperature: 0.2
+max_tokens: 1024
+timeout: 30

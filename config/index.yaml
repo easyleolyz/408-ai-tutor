@@ -1,0 +1,21 @@
+# 索引输出目录：FAISS 文件等会保存在这里
+index_dir: "data/index"
+
+# 原始数据目录与文件模式
+data_dir: "data/raw"
+file_patterns:
+  - "*.md"
+  - "*.txt"
+  # 将来你有 .json / .csv 之类也可以加进来
+
+# 嵌入向量的维度
+# 先写成 768 作为占位，后面你选定具体 embedding 模型后再改
+embedding_dim: 768
+
+# FAISS 索引类型：最开始用最简单的 Flat
+# 后面可以尝试 IVF / HNSW 等加速结构
+faiss_index_type: "Flat"
+
+# 文本切分参数
+chunk_size: 400        # 每个 chunk 大概 400 字左右
+chunk_overlap: 50      # 相邻 chunk 重叠 50 字，减少信息割裂

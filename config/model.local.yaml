@@ -1,0 +1,13 @@
+backend: "local"
+provider: "huggingface"   # 或 "llama.cpp" / "vllm" 等，将来可以改
+
+# 本地模型路径或名称（占位）
+model_name_or_path: "YOUR_LOCAL_MODEL_PATH_OR_NAME"
+
+device: "cuda"            # 或 "cpu"，根据你的 4060 / 环境来选
+dtype: "float16"          # 或 "bfloat16" / "float32"
+
+# 批量推理 / 性能相关参数（可后续再用）
+max_new_tokens: 512
+temperature: 0.2
+top_p: 0.9
