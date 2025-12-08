@@ -1,6 +1,6 @@
 index_dir: "data/index"
 
-data_dir: "data/raw"
+data_dir: "data/corpus"
 file_patterns:
   - "*.md"
   - "*.txt"
