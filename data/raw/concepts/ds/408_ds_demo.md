@@ -1,3 +1,12 @@
+---
+subject: "ds"
+chapter: "Demo 章节示例"
+section: null
+type: "concept"
+source: "demo"
+tags: ["demo", "数据结构基础"]
+---
+
 # 数据结构基础概念（408 Demo）
 
 ## 1.1 线性表

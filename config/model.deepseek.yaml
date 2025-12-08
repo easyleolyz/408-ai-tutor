@@ -11,4 +11,4 @@ model_name: "deepseek-chat"   # 这里可以改成你实际要用的模型名
 # 采样与请求参数
 temperature: 0.2
 max_tokens: 1024
-timeout: 30
+timeout: 120

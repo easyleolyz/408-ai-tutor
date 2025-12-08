@@ -1,6 +1,6 @@
 index_dir: "data/index"
 
-data_dir: "data/corpus"
+data_dir: "data/raw"
 file_patterns:
   - "concepts/**/*.md"
   - "exams/qa/*.jsonl"
