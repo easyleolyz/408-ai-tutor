@@ -2,8 +2,9 @@ index_dir: "data/index"
 
 data_dir: "data/corpus"
 file_patterns:
-  - "*.md"
-  - "*.txt"
+  - "concepts/**/*.md"
+  - "exams/qa/*.jsonl"
+  - "notes/**/*.md"
 
 # === Embedding 相关 ===
 # BGE-M3 的维度是 1024
